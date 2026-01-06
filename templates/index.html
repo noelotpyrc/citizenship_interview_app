@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Citizenship Interview Prep</title>
+    <style>
+        :root {
+            --primary: #002e5d;
+            /* USCIS Blue */
+            --danger: #cf0000;
+            /* US Red */
+            --light: #f4f4f4;
+            --success: #28a745;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        nav button.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .answer-text {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+
+        .answer-text.visible {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Controls */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button.action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button.secondary {
+            background: #6c757d;
+        }
+
+        button.audio-btn {
+            background: #e0a800;
+        }
+
+        /* Input for Interview Mode */
+        #input-area {
+            width: 100%;
+            margin-top: 20px;
+            display: none;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+        }
+
+        /* Feedback */
+        .feedback {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-height: 1.5em;
+        }
+
+        .correct {
+            color: var(--success);
+        }
+
+        .incorrect {
+            color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* Stats View */
+        #stats-container {
+            display: none;
+            width: 100%;
+        }
+
+        .stats-summary {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-val {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stats-table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .dot-green {
+            background: var(--success);
+        }
+
+        .dot-red {
+            background: var(--danger);
+        }
+
+        .dot-gray {
+            background: #ddd;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <button id="mode-study" class="active" onclick="setMode('study')">📖 Study</button>
+        <button id="mode-interview" onclick="setMode('interview')">🎤 Interview</button>
+        <button id="mode-stats" onclick="setMode('stats')">📊 Stats</button>
+    </nav>
+
+    <main>
+        <div class="card">
+            <div style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Question <span id="q-num">1</span> of 100
+            </div>
+
+            <div class="question-text" id="question">Loading...</div>
+
+            <div id="input-area">
+                <input type="text" id="user-input" placeholder="Type your answer here..." autocomplete="off">
+                <div class="feedback" id="feedback"></div>
+            </div>
+
+            <div class="answer-text" id="answer"></div>
+        </div>
+
+        </div>
+
+        <!-- Stats Container -->
+        <div id="stats-container">
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <div class="stat-val" id="total-mastered">0</div>
+                    <div class="stat-label">Mastered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="total-attempted">0</div>
+                    <div class="stat-label">Attempted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="completion-rate">0%</div>
+                    <div class="stat-label">Completion</div>
+                </div>
+            </div>
+            <div class="stats-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Question</th>
+                            <th style="width: 100px;">History</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-table-body">
+                        <!-- JS renders -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="controls" id="controls-area">
+            <button class="action-btn audio-btn" onclick="speakQuestion()">🔊 Listen</button>
+            <button class="action-btn secondary" id="btn-reveal" onclick="revealAnswer()">Show Answer</button>
+            <button class="action-btn secondary" onclick="randomQuestion()">🔀 Random</button>
+            <button class="action-btn" onclick="nextQuestion()">Next Question ➡</button>
+        </div>
+    </main>
+
+    <footer>
+        Based on the 2008 Civics Test (100 Questions) • Runs Offline
+    </footer>
+
+    <script>
+        // --- DATA: 100 CIVICS QUESTIONS (2008 VERSION) ---
+        // A simplified list for the app. Each question has 'q' (question), 'a' (display answer), and 'k' (keywords for checking typed answers).
+        const questions = [
+            { q: "What is the supreme law of the land?", a: "The Constitution", k: ["constitution"] },
+            { q: "What does the Constitution do?", a: "Sets up the government / Defines the government / Protects basic rights", k: ["sets up", "defines", "protects", "government", "rights"] },
+            { q: "The idea of self-government is in the first three words of the Constitution. What are these words?", a: "We the People", k: ["we the people"] },
+            { q: "What is an amendment?", a: "A change (to the Constitution) / An addition (to the Constitution)", k: ["change", "addition"] },
+            { q: "What do we call the first ten amendments to the Constitution?", a: "The Bill of Rights", k: ["bill of rights"] },
+            { q: "What is one right or freedom from the First Amendment?", a: "Speech / Religion / Assembly / Press / Petition the government", k: ["speech", "religion", "assembly", "press", "petition"] },
+            { q: "How many amendments does the Constitution have?", a: "27 (Twenty-seven)", k: ["27", "twenty-seven", "twenty seven"] },
+            { q: "What did the Declaration of Independence do?", a: "Announced our independence (from Great Britain)", k: ["announced", "declared", "independence"] },
+            { q: "What are two rights in the Declaration of Independence?", a: "Life / Liberty / Pursuit of Happiness", k: ["life", "liberty", "happiness"] },
+            { q: "What is freedom of religion?", a: "You can practice any religion, or not practice a religion.", k: ["any religion", "not practice", "practice"] },
+            { q: "What is the economic system in the United States?", a: "Capitalist economy / Market economy", k: ["capitalist", "market"] },
+            { q: "What is the 'rule of law'?", a: "Everyone must follow the law / Leaders must obey the law / Government must obey the law", k: ["everyone", "leaders", "government", "follow", "obey"] },
+            { q: "Name one branch or part of the government.", a: "Congress / Legislative / President / Executive / The courts / Judicial", k: ["congress", "legislative", "president", "executive", "courts", "judicial"] },
+            { q: "What stops one branch of government from becoming too powerful?", a: "Checks and balances / Separation of powers", k: ["checks", "balances", "separation"] },
+            { q: "Who is in charge of the executive branch?", a: "The President", k: ["president"] },
+            { q: "Who makes federal laws?", a: "Congress / Senate and House / Legislature", k: ["congress", "senate", "house", "legislature"] },
+            { q: "What are the two parts of the U.S. Congress?", a: "The Senate and House of Representatives", k: ["senate", "house"] },
+            { q: "How many U.S. Senators are there?", a: "100 (One hundred)", k: ["100", "one hundred"] },
+            { q: "We elect a U.S. Senator for how many years?", a: "6 (Six)", k: ["6", "six"] },
+            { q: "Who is one of your state's U.S. Senators now?", a: "*Answers will vary* (Check your state)", k: ["vary", "check"] },
+            { q: "The House of Representatives has how many voting members?", a: "435 (Four hundred thirty-five)", k: ["435", "four hundred"] },
+            { q: "We elect a U.S. Representative for how many years?", a: "2 (Two)", k: ["2", "two"] },
+            { q: "Name your U.S. Representative.", a: "*Answers will vary*", k: ["vary"] },
+            { q: "Who does a U.S. Senator represent?", a: "All people of the state", k: ["all people", "state"] },
+            { q: "Why do some states have more Representatives than other states?", a: "Because of the state's population", k: ["population", "people"] },
+            { q: "We elect a President for how many years?", a: "4 (Four)", k: ["4", "four"] },
+            { q: "In what month do we vote for President?", a: "November", k: ["november"] },
+            { q: "What is the name of the President of the United States now?", a: "Joe Biden / Biden (Check current)", k: ["biden", "trump", "harris"] },
+            { q: "What is the name of the Vice President of the United States now?", a: "Kamala Harris / Harris (Check current)", k: ["harris", "vance"] },
+            { q: "If the President can no longer serve, who becomes President?", a: "The Vice President", k: ["vice president"] },
+            { q: "If both the President and the Vice President can no longer serve, who becomes President?", a: "The Speaker of the House", k: ["speaker"] },
+            { q: "Who is the Commander in Chief of the military?", a: "The President", k: ["president"] },
+            { q: "Who signs bills to become laws?", a: "The President", k: ["president"] },
+            { q: "Who vetoes bills?", a: "The President", k: ["president"] },
+            { q: "What does the President's Cabinet do?", a: "Advises the President", k: ["advises", "advice"] },
+            { q: "What are two Cabinet-level positions?", a: "Secretary of State / Secretary of Labor / Attorney General / Vice President...", k: ["secretary", "attorney general", "vice president"] },
+            { q: "What does the judicial branch do?", a: "Reviews laws / Explains laws / Resolves disputes / Decides if a law is constitutional", k: ["reviews", "explains", "resolves", "decides", "constitutional"] },
+            { q: "What is the highest court in the United States?", a: "The Supreme Court", k: ["supreme court"] },
+            { q: "How many justices are on the Supreme Court?", a: "9 (Nine)", k: ["9", "nine"] },
+            { q: "Who is the Chief Justice of the United States now?", a: "John Roberts", k: ["roberts"] },
+            { q: "Under our Constitution, some powers belong to the federal government. What is one power of the federal government?", a: "To print money / To declare war / To create an army / To make treaties", k: ["print money", "declare war", "create an army", "make treaties"] },
+            { q: "Under our Constitution, some powers belong to the states. What is one power of the states?", a: "Provide schooling and education / Provide protection (police) / Give a driver's license", k: ["schooling", "education", "protection", "police", "driver"] },
+            { q: "Who is the Governor of your state now?", a: "*Answers will vary*", k: ["vary"] },
+            { q: "What is the capital of your state?", a: "*Answers will vary*", k: ["vary"] },
+            { q: "What are the two major political parties in the United States?", a: "Democratic and Republican", k: ["democratic", "republican"] },
+            { q: "What is the political party of the President now?", a: "Democratic (Check current)", k: ["democratic", "republican"] },
+            { q: "What is the name of the Speaker of the House of Representatives now?", a: "Mike Johnson (Check current)", k: ["johnson", "mccarthy"] },
+            { q: "There are four amendments to the Constitution about who can vote. Describe one of them.", a: "Citizens 18 and older / You don't have to pay to vote / Any citizen can vote / Male and female", k: ["18", "pay", "poll tax", "women", "male"] },
+            { q: "What is one responsibility that is only for United States citizens?", a: "Serve on a jury / Vote in a federal election", k: ["jury", "vote"] },
+            { q: "Name one right only for United States citizens.", a: "Vote in a federal election / Run for federal office", k: ["vote", "run for office"] },
+            { q: "What are two rights of everyone living in the United States?", a: "Freedom of expression / Freedom of speech / Freedom of assembly / Freedom of religion", k: ["expression", "speech", "assembly", "religion"] },
+            { q: "What do we show loyalty to when we say the Pledge of Allegiance?", a: "The United States / The flag", k: ["united states", "flag"] },
+            { q: "What is one promise you make when you become a United States citizen?", a: "Give up loyalty to other countries / Defend the Constitution / Obey the laws of the US", k: ["give up", "defend", "obey", "serve"] },
+            { q: "How old do citizens have to be to vote for President?", a: "18 and older", k: ["18"] },
+            { q: "What are two ways that Americans can participate in their democracy?", a: "Vote / Join a political party / Help with a campaign / Call Senators and Representatives", k: ["vote", "join", "help", "call", "write"] },
+            { q: "When is the last day you can send in federal income tax forms?", a: "April 15", k: ["april 15"] },
+            { q: "When must all men register for the Selective Service?", a: "At age 18 / Between 18 and 26", k: ["18", "26"] },
+            { q: "What is one reason colonists came to America?", a: "Freedom / Political liberty / Religious freedom / Economic opportunity", k: ["freedom", "liberty", "opportunity"] },
+            { q: "Who lived in America before the Europeans arrived?", a: "American Indians / Native Americans", k: ["indians", "native americans"] },
+            { q: "What group of people was taken to America and sold as slaves?", a: "Africans / People from Africa", k: ["africans", "africa"] },
+            { q: "Why did the colonists fight the British?", a: "High taxes (taxation without representation) / Quarters soldiers / No self-government", k: ["taxes", "soldiers", "self-government"] },
+            { q: "Who wrote the Declaration of Independence?", a: "Thomas Jefferson", k: ["jefferson"] },
+            { q: "When was the Declaration of Independence adopted?", a: "July 4, 1776", k: ["july 4", "1776"] },
+            { q: "There were 13 original states. Name three.", a: "New Hampshire, Massachusetts, Rhode Island, Connecticut, New York, New Jersey, Pennsylvania, Delaware, Maryland, Virginia, North Carolina, South Carolina, Georgia", k: ["new york", "new jersey", "virginia", "georgia", "carolina", "hampshire", "maryland"] },
+            { q: "What happened at the Constitutional Convention?", a: "The Constitution was written.", k: ["written", "wrote"] },
+            { q: "When was the Constitution written?", a: "1787", k: ["1787"] },
+            { q: "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.", a: "James Madison / Alexander Hamilton / John Jay / Publius", k: ["madison", "hamilton", "jay", "publius"] },
+            { q: "What is one thing Benjamin Franklin is famous for?", a: "U.S. Diplomat / Oldest member of Constitutional Convention / First Postmaster General", k: ["diplomat", "oldest", "postmaster"] },
+            { q: "Who is the 'Father of Our Country'?", a: "George Washington", k: ["washington"] },
+            { q: "Who was the first President?", a: "George Washington", k: ["washington"] },
+            { q: "What territory did the United States buy from France in 1803?", a: "The Louisiana Territory / Louisiana", k: ["louisiana"] },
+            { q: "Name one war fought by the United States in the 1800s.", a: "War of 1812 / Mexican-American War / Civil War / Spanish-American War", k: ["1812", "mexican", "civil", "spanish"] },
+            { q: "Name the U.S. war between the North and the South.", a: "The Civil War", k: ["civil war"] },
+            { q: "Name one problem that led to the Civil War.", a: "Slavery / Economic reasons / States' rights", k: ["slavery", "economic", "states' rights"] },
+            { q: "What was one important thing that Abraham Lincoln did?", a: "Freed the slaves (Emancipation Proclamation) / Saved the Union", k: ["freed", "slaves", "saved the union"] },
+            { q: "What did the Emancipation Proclamation do?", a: "Freed the slaves", k: ["freed", "slaves"] },
+            { q: "What did Susan B. Anthony do?", a: "Fought for women's rights / Fought for civil rights", k: ["women", "civil rights"] },
+            { q: "Name one war fought by the United States in the 1900s.", a: "World War I / World War II / Korean War / Vietnam War / Gulf War", k: ["world war", "korea", "vietnam", "gulf"] },
+            { q: "Who was President during World War I?", a: "Woodrow Wilson", k: ["wilson"] },
+            { q: "Who was President during the Great Depression and World War II?", a: "Franklin Roosevelt", k: ["roosevelt"] },
+            { q: "Who did the United States fight in World War II?", a: "Japan, Germany, and Italy", k: ["japan", "germany", "italy"] },
+            { q: "Before he was President, Eisenhower was a general. What war was he in?", a: "World War II", k: ["world war ii", "world war 2"] },
+            { q: "During the Cold War, what was the main concern of the United States?", a: "Communism", k: ["communism"] },
+            { q: "What movement tried to end racial discrimination?", a: "Civil rights movement", k: ["civil rights"] },
+            { q: "What did Martin Luther King, Jr. do?", a: "Fought for civil rights / Worked for equality for all Americans", k: ["civil rights", "equality"] },
+            { q: "What major event happened on September 11, 2001, in the United States?", a: "Terrorists attacked the United States.", k: ["terrorists", "attacked"] },
+            { q: "Name one American Indian tribe in the United States.", a: "Cherokee / Navajo / Sioux / Chippewa / Choctaw / Pueblo / Apache...", k: ["cherokee", "navajo", "sioux", "apache"] },
+            { q: "Name one of the two longest rivers in the United States.", a: "Missouri River / Mississippi River", k: ["missouri", "mississippi"] },
+            { q: "What ocean is on the West Coast of the United States?", a: "Pacific Ocean", k: ["pacific"] },
+            { q: "What ocean is on the East Coast of the United States?", a: "Atlantic Ocean", k: ["atlantic"] },
+            { q: "Name one U.S. territory.", a: "Puerto Rico / U.S. Virgin Islands / American Samoa / Northern Mariana Islands / Guam", k: ["puerto rico", "virgin islands", "samoa", "guam"] },
+            { q: "Name one state that borders Canada.", a: "Maine / New Hampshire / Vermont / New York / Pennsylvania / Ohio / Michigan / Minnesota / North Dakota / Montana / Idaho / Washington / Alaska", k: ["maine", "york", "ohio", "michigan", "minnesota", "dakota", "montana", "washington", "alaska"] },
+            { q: "Name one state that borders Mexico.", a: "California / Arizona / New Mexico / Texas", k: ["california", "arizona", "texas", "new mexico"] },
+            { q: "What is the capital of the United States?", a: "Washington, D.C.", k: ["washington"] },
+            { q: "Where is the Statue of Liberty?", a: "New York (Harbor) / Liberty Island", k: ["new york", "liberty"] },
+            { q: "Why does the flag have 13 stripes?", a: "Because there were 13 original colonies", k: ["13", "colonies"] },
+            { q: "Why does the flag have 50 stars?", a: "Because there is one star for each state / Because there are 50 states", k: ["50", "states"] },
+            { q: "What is the name of the national anthem?", a: "The Star-Spangled Banner", k: ["star-spangled", "banner"] },
+            { q: "When do we celebrate Independence Day?", a: "July 4", k: ["july 4"] },
+            { q: "Name two national U.S. holidays.", a: "New Year's Day / Martin Luther King, Jr. Day / Presidents' Day / Memorial Day / Independence Day / Labor Day / Columbus Day / Veterans Day / Thanksgiving / Christmas", k: ["christmas", "thanksgiving", "labor", "memorial", "independence"] }
+        ];
+
+        // --- LOGIC ---
+        let currentIdx = 0;
+        let mode = 'study'; // 'study' or 'interview'
+
+        const els = {
+            qText: document.getElementById('question'),
+            aText: document.getElementById('answer'),
+            btnReveal: document.getElementById('btn-reveal'),
+            qNum: document.getElementById('q-num'),
+            inputArea: document.getElementById('input-area'),
+            userInput: document.getElementById('user-input'),
+            feedback: document.getElementById('feedback'),
+            navStudy: document.getElementById('mode-study'),
+            navInt: document.getElementById('mode-interview'),
+            navStats: document.getElementById('mode-stats'),
+            card: document.querySelector('.card'),
+            controls: document.getElementById('controls-area'),
+            stats: document.getElementById('stats-container'),
+            statsBody: document.getElementById('stats-table-body'),
+            statMastered: document.getElementById('total-mastered'),
+            statAttempted: document.getElementById('total-attempted'),
+            statRate: document.getElementById('completion-rate')
+        };
+
+        function setMode(newMode) {
+            mode = newMode;
+
+            // Update Nav UI
+            els.navStudy.classList.toggle('active', mode === 'study');
+            els.navInt.classList.toggle('active', mode === 'interview');
+            els.navStats.classList.toggle('active', mode === 'stats');
+
+            // View Logic
+            if (mode === 'stats') {
+                els.card.style.display = 'none';
+                els.controls.style.display = 'none';
+                els.stats.style.display = 'block';
+                renderStats();
+            } else {
+                els.card.style.display = 'block';
+                els.controls.style.display = 'flex';
+                els.stats.style.display = 'none';
+
+                // Mode Specifics
+                if (mode === 'study') {
+                    els.inputArea.style.display = 'none';
+                    els.btnReveal.style.display = 'block';
+                    els.aText.style.display = 'none';
+                    els.btnReveal.innerText = "Show Answer";
+                } else {
+                    els.inputArea.style.display = 'block';
+                    els.btnReveal.style.display = 'block';
+                    els.btnReveal.innerText = "Check Answer"; // Ensure Check Answer is shown or hidden logic
+                    // Re-run loadQuestion logic for buttons? 
+                    // loadQuestion handles button text, but we should ensure visibility
+                    els.btnReveal.style.display = 'none'; // Initially hidden in interview until check? 
+                    // No, original logic was: hidden initially.
+                }
+                loadQuestion(currentIdx);
+            }
+        }
+
+        function renderStats() {
+            let mastered = 0;
+            let attempted = 0;
+            let html = '';
+
+            questions.forEach((q, idx) => {
+                const s = progress.stats[idx];
+                let status = '<span class="status-dot dot-gray"></span>';
+                let history = '-';
+
+                if (s && s.attempts > 0) {
+                    attempted++;
+                    if (s.correct > s.incorrect) {
+                        mastered++;
+                        status = '<span class="status-dot dot-green"></span>';
+                    } else {
+                        status = '<span class="status-dot dot-red"></span>';
+                    }
+                    history = `<span style="color:var(--success)">${s.correct}</span> / <span style="color:var(--danger)">${s.incorrect}</span>`;
+                }
+
+                html += `
+                    <tr onclick="goToQuestion(${idx})" style="cursor:pointer">
+                        <td>${idx + 1}</td>
+                        <td>${status} ${q.q.substring(0, 60)}${q.q.length > 60 ? '...' : ''}</td>
+                        <td>${history}</td>
+                    </tr>
+                `;
+            });
+
+            els.statsBody.innerHTML = html;
+            els.statMastered.innerText = mastered;
+            els.statAttempted.innerText = attempted;
+            els.statRate.innerText = Math.round((mastered / 100) * 100) + '%';
+        }
+
+        function goToQuestion(idx) {
+            setMode('study');
+            loadQuestion(idx);
+        }
+
+        function loadQuestion(idx) {
+            currentIdx = idx;
+            els.qNum.innerText = currentIdx + 1;
+            els.qText.innerText = questions[currentIdx].q;
+            els.aText.innerText = questions[currentIdx].a;
+
+            // Reset States
+            els.aText.classList.remove('visible');
+            els.aText.style.display = 'none';
+            els.feedback.innerText = '';
+            els.userInput.value = '';
+            els.userInput.classList.remove('correct', 'incorrect');
+
+            if (mode === 'study') {
+                els.btnReveal.style.display = 'block';
+                els.btnReveal.innerText = "Show Answer";
+            } else if (mode === 'interview') {
+                els.btnReveal.style.display = 'block';
+                els.btnReveal.innerText = "Check Answer";
+            }
+        }
+
+        function revealAnswer() {
+            if (mode === 'study') {
+                els.aText.style.display = 'block';
+                setTimeout(() => els.aText.classList.add('visible'), 10);
+                els.btnReveal.style.display = 'none';
+            } else {
+                checkAnswer();
+            }
+        }
+
+        function checkAnswer() {
+            const userVal = els.userInput.value.toLowerCase().trim();
+            const correctKeywords = questions[currentIdx].k;
+            let isCorrect = false;
+
+            // Basic Keyword Check: If user input contains any key phrase
+            correctKeywords.forEach(key => {
+                if (userVal.includes(key)) isCorrect = true;
+            });
+
+            // Show Feedback
+            if (isCorrect) {
+                els.feedback.innerHTML = "<span class='correct'>✔ Correct!</span>";
+            } else {
+                els.feedback.innerHTML = "<span class='incorrect'>✘ Not quite.</span>";
+            }
+
+            // Always show the real answer after checking
+            els.aText.style.display = 'block';
+            setTimeout(() => els.aText.classList.add('visible'), 10);
+        }
+
+        function nextQuestion() {
+            let next = currentIdx + 1;
+            if (next >= questions.length) next = 0;
+            loadQuestion(next);
+        }
+
+        function speakQuestion() {
+            const utterance = new SpeechSynthesisUtterance(questions[currentIdx].q);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Handle "Enter" key for Interview Mode
+        els.userInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                // If answer is already visible, go to next
+                if (els.aText.style.display === 'block') {
+                    nextQuestion();
+                } else {
+                    checkAnswer();
+                }
+            }
+        });
+
+        // --- NEW FEATURES: PROGRESS & RANDOM ---
+
+        let progress = { lastIdx: 0, stats: {} };
+        let isSyncing = false;
+
+        async function loadProgress() {
+            try {
+                const res = await fetch('/api/progress');
+                if (res.ok) {
+                    const data = await res.json();
+                    progress = data;
+                    if (!progress.stats) progress.stats = {};
+                }
+            } catch (e) {
+                console.error("Failed to load progress from server", e);
+            }
+        }
+
+        async function saveProgress() {
+            if (isSyncing) return;
+            isSyncing = true;
+            try {
+                await fetch('/api/progress', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(progress)
+                });
+            } catch (e) {
+                console.error("Failed to save progress", e);
+            } finally {
+                isSyncing = false;
+            }
+        }
+
+        function getStats(idx) {
+            return progress.stats[idx] || { correct: 0, incorrect: 0, attempts: 0 };
+        }
+
+        function updateStatsUI(idx) {
+            const s = getStats(idx);
+            let statsEl = document.getElementById('q-stats');
+            if (!statsEl) {
+                statsEl = document.createElement('div');
+                statsEl.id = 'q-stats';
+                statsEl.style.fontSize = '0.9rem';
+                statsEl.style.color = '#666';
+                statsEl.style.marginTop = '5px';
+                if (els.qNum && els.qNum.parentNode) els.qNum.parentNode.appendChild(statsEl);
+            }
+            statsEl.innerText = s.attempts > 0 ?
+                `History: ${s.correct} Correct, ${s.incorrect} Incorrect` : "History: Not answered yet";
+        }
+
+        function recordResult(idx, isCorrect) {
+            if (!progress.stats[idx]) progress.stats[idx] = { correct: 0, incorrect: 0, attempts: 0 };
+            progress.stats[idx].attempts++;
+            if (isCorrect) progress.stats[idx].correct++; else progress.stats[idx].incorrect++;
+            saveProgress();
+            updateStatsUI(idx);
+        }
+
+        function randomQuestion() {
+            let r = Math.floor(Math.random() * questions.length);
+            if (r === currentIdx && questions.length > 1) r = (r + 1) % questions.length;
+            loadQuestion(r);
+        }
+
+        // Override loadQuestion to handle stats & saving position
+        const _superLoad = loadQuestion;
+        loadQuestion = function (idx) {
+            _superLoad(idx);
+            progress.lastIdx = idx;
+            saveProgress();
+            updateStatsUI(idx);
+        };
+
+        // Override checkAnswer to record stats
+        const _superCheck = checkAnswer;
+        checkAnswer = function () {
+            const userVal = els.userInput.value.toLowerCase().trim();
+            const correctKeywords = questions[currentIdx].k;
+            let isCorrect = false;
+            correctKeywords.forEach(key => { if (userVal.includes(key)) isCorrect = true; });
+
+            recordResult(currentIdx, isCorrect);
+            _superCheck();
+        };
+
+        // Initialize
+        (async function init() {
+            await loadProgress();
+            let startIdx = 0;
+            if (typeof progress.lastIdx === 'number' && progress.lastIdx >= 0 && progress.lastIdx < questions.length) {
+                startIdx = progress.lastIdx;
+            }
+            setMode('study');
+            loadQuestion(startIdx);
+        })();
+    </script>
+
+</body>
+
+</html>
