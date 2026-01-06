@@ -1,0 +1,844 @@
+[
+    {
+        "q": "What is the supreme law of the land?",
+        "a": "The Constitution",
+        "k": [
+            "constitution"
+        ]
+    },
+    {
+        "q": "What does the Constitution do?",
+        "a": "Sets up the government / Defines the government / Protects basic rights",
+        "k": [
+            "sets up",
+            "defines",
+            "protects",
+            "government",
+            "rights"
+        ]
+    },
+    {
+        "q": "The idea of self-government is in the first three words of the Constitution. What are these words?",
+        "a": "We the People",
+        "k": [
+            "we the people"
+        ]
+    },
+    {
+        "q": "What is an amendment?",
+        "a": "A change (to the Constitution) / An addition (to the Constitution)",
+        "k": [
+            "change",
+            "addition"
+        ]
+    },
+    {
+        "q": "What do we call the first ten amendments to the Constitution?",
+        "a": "The Bill of Rights",
+        "k": [
+            "bill of rights"
+        ]
+    },
+    {
+        "q": "What is one right or freedom from the First Amendment?",
+        "a": "Speech / Religion / Assembly / Press / Petition the government",
+        "k": [
+            "speech",
+            "religion",
+            "assembly",
+            "press",
+            "petition"
+        ]
+    },
+    {
+        "q": "How many amendments does the Constitution have?",
+        "a": "27 (Twenty-seven)",
+        "k": [
+            "27",
+            "twenty-seven",
+            "twenty seven"
+        ]
+    },
+    {
+        "q": "What did the Declaration of Independence do?",
+        "a": "Announced our independence (from Great Britain)",
+        "k": [
+            "announced",
+            "declared",
+            "independence"
+        ]
+    },
+    {
+        "q": "What are two rights in the Declaration of Independence?",
+        "a": "Life / Liberty / Pursuit of Happiness",
+        "k": [
+            "life",
+            "liberty",
+            "happiness"
+        ]
+    },
+    {
+        "q": "What is freedom of religion?",
+        "a": "You can practice any religion, or not practice a religion.",
+        "k": [
+            "any religion",
+            "not practice",
+            "practice"
+        ]
+    },
+    {
+        "q": "What is the economic system in the United States?",
+        "a": "Capitalist economy / Market economy",
+        "k": [
+            "capitalist",
+            "market"
+        ]
+    },
+    {
+        "q": "What is the 'rule of law'?",
+        "a": "Everyone must follow the law / Leaders must obey the law / Government must obey the law",
+        "k": [
+            "everyone",
+            "leaders",
+            "government",
+            "follow",
+            "obey"
+        ]
+    },
+    {
+        "q": "Name one branch or part of the government.",
+        "a": "Congress / Legislative / President / Executive / The courts / Judicial",
+        "k": [
+            "congress",
+            "legislative",
+            "president",
+            "executive",
+            "courts",
+            "judicial"
+        ]
+    },
+    {
+        "q": "What stops one branch of government from becoming too powerful?",
+        "a": "Checks and balances / Separation of powers",
+        "k": [
+            "checks",
+            "balances",
+            "separation"
+        ]
+    },
+    {
+        "q": "Who is in charge of the executive branch?",
+        "a": "The President",
+        "k": [
+            "president"
+        ]
+    },
+    {
+        "q": "Who makes federal laws?",
+        "a": "Congress / Senate and House / Legislature",
+        "k": [
+            "congress",
+            "senate",
+            "house",
+            "legislature"
+        ]
+    },
+    {
+        "q": "What are the two parts of the U.S. Congress?",
+        "a": "The Senate and House of Representatives",
+        "k": [
+            "senate",
+            "house"
+        ]
+    },
+    {
+        "q": "How many U.S. Senators are there?",
+        "a": "100 (One hundred)",
+        "k": [
+            "100",
+            "one hundred"
+        ]
+    },
+    {
+        "q": "We elect a U.S. Senator for how many years?",
+        "a": "6 (Six)",
+        "k": [
+            "6",
+            "six"
+        ]
+    },
+    {
+        "q": "Who is one of your state's U.S. Senators now?",
+        "a": "*Answers will vary* (Check your state)",
+        "k": [
+            "vary",
+            "check"
+        ]
+    },
+    {
+        "q": "The House of Representatives has how many voting members?",
+        "a": "435 (Four hundred thirty-five)",
+        "k": [
+            "435",
+            "four hundred"
+        ]
+    },
+    {
+        "q": "We elect a U.S. Representative for how many years?",
+        "a": "2 (Two)",
+        "k": [
+            "2",
+            "two"
+        ]
+    },
+    {
+        "q": "Name your U.S. Representative.",
+        "a": "*Answers will vary*",
+        "k": [
+            "vary"
+        ]
+    },
+    {
+        "q": "Who does a U.S. Senator represent?",
+        "a": "All people of the state",
+        "k": [
+            "all people",
+            "state"
+        ]
+    },
+    {
+        "q": "Why do some states have more Representatives than other states?",
+        "a": "Because of the state's population",
+        "k": [
+            "population",
+            "people"
+        ]
+    },
+    {
+        "q": "We elect a President for how many years?",
+        "a": "4 (Four)",
+        "k": [
+            "4",
+            "four"
+        ]
+    },
+    {
+        "q": "In what month do we vote for President?",
+        "a": "November",
+        "k": [
+            "november"
+        ]
+    },
+    {
+        "q": "What is the name of the President of the United States now?",
+        "a": "Joe Biden / Biden (Check current)",
+        "k": [
+            "biden",
+            "trump",
+            "harris"
+        ]
+    },
+    {
+        "q": "What is the name of the Vice President of the United States now?",
+        "a": "Kamala Harris / Harris (Check current)",
+        "k": [
+            "harris",
+            "vance"
+        ]
+    },
+    {
+        "q": "If the President can no longer serve, who becomes President?",
+        "a": "The Vice President",
+        "k": [
+            "vice president"
+        ]
+    },
+    {
+        "q": "If both the President and the Vice President can no longer serve, who becomes President?",
+        "a": "The Speaker of the House",
+        "k": [
+            "speaker"
+        ]
+    },
+    {
+        "q": "Who is the Commander in Chief of the military?",
+        "a": "The President",
+        "k": [
+            "president"
+        ]
+    },
+    {
+        "q": "Who signs bills to become laws?",
+        "a": "The President",
+        "k": [
+            "president"
+        ]
+    },
+    {
+        "q": "Who vetoes bills?",
+        "a": "The President",
+        "k": [
+            "president"
+        ]
+    },
+    {
+        "q": "What does the President's Cabinet do?",
+        "a": "Advises the President",
+        "k": [
+            "advises",
+            "advice"
+        ]
+    },
+    {
+        "q": "What are two Cabinet-level positions?",
+        "a": "Secretary of State / Secretary of Labor / Attorney General / Vice President...",
+        "k": [
+            "secretary",
+            "attorney general",
+            "vice president"
+        ]
+    },
+    {
+        "q": "What does the judicial branch do?",
+        "a": "Reviews laws / Explains laws / Resolves disputes / Decides if a law is constitutional",
+        "k": [
+            "reviews",
+            "explains",
+            "resolves",
+            "decides",
+            "constitutional"
+        ]
+    },
+    {
+        "q": "What is the highest court in the United States?",
+        "a": "The Supreme Court",
+        "k": [
+            "supreme court"
+        ]
+    },
+    {
+        "q": "How many justices are on the Supreme Court?",
+        "a": "9 (Nine)",
+        "k": [
+            "9",
+            "nine"
+        ]
+    },
+    {
+        "q": "Who is the Chief Justice of the United States now?",
+        "a": "John Roberts",
+        "k": [
+            "roberts"
+        ]
+    },
+    {
+        "q": "Under our Constitution, some powers belong to the federal government. What is one power of the federal government?",
+        "a": "To print money / To declare war / To create an army / To make treaties",
+        "k": [
+            "print money",
+            "declare war",
+            "create an army",
+            "make treaties"
+        ]
+    },
+    {
+        "q": "Under our Constitution, some powers belong to the states. What is one power of the states?",
+        "a": "Provide schooling and education / Provide protection (police) / Give a driver's license",
+        "k": [
+            "schooling",
+            "education",
+            "protection",
+            "police",
+            "driver"
+        ]
+    },
+    {
+        "q": "Who is the Governor of your state now?",
+        "a": "*Answers will vary*",
+        "k": [
+            "vary"
+        ]
+    },
+    {
+        "q": "What is the capital of your state?",
+        "a": "*Answers will vary*",
+        "k": [
+            "vary"
+        ]
+    },
+    {
+        "q": "What are the two major political parties in the United States?",
+        "a": "Democratic and Republican",
+        "k": [
+            "democratic",
+            "republican"
+        ]
+    },
+    {
+        "q": "What is the political party of the President now?",
+        "a": "Democratic (Check current)",
+        "k": [
+            "democratic",
+            "republican"
+        ]
+    },
+    {
+        "q": "What is the name of the Speaker of the House of Representatives now?",
+        "a": "Mike Johnson (Check current)",
+        "k": [
+            "johnson",
+            "mccarthy"
+        ]
+    },
+    {
+        "q": "There are four amendments to the Constitution about who can vote. Describe one of them.",
+        "a": "Citizens 18 and older / You don't have to pay to vote / Any citizen can vote / Male and female",
+        "k": [
+            "18",
+            "pay",
+            "poll tax",
+            "women",
+            "male"
+        ]
+    },
+    {
+        "q": "What is one responsibility that is only for United States citizens?",
+        "a": "Serve on a jury / Vote in a federal election",
+        "k": [
+            "jury",
+            "vote"
+        ]
+    },
+    {
+        "q": "Name one right only for United States citizens.",
+        "a": "Vote in a federal election / Run for federal office",
+        "k": [
+            "vote",
+            "run for office"
+        ]
+    },
+    {
+        "q": "What are two rights of everyone living in the United States?",
+        "a": "Freedom of expression / Freedom of speech / Freedom of assembly / Freedom of religion",
+        "k": [
+            "expression",
+            "speech",
+            "assembly",
+            "religion"
+        ]
+    },
+    {
+        "q": "What do we show loyalty to when we say the Pledge of Allegiance?",
+        "a": "The United States / The flag",
+        "k": [
+            "united states",
+            "flag"
+        ]
+    },
+    {
+        "q": "What is one promise you make when you become a United States citizen?",
+        "a": "Give up loyalty to other countries / Defend the Constitution / Obey the laws of the US",
+        "k": [
+            "give up",
+            "defend",
+            "obey",
+            "serve"
+        ]
+    },
+    {
+        "q": "How old do citizens have to be to vote for President?",
+        "a": "18 and older",
+        "k": [
+            "18"
+        ]
+    },
+    {
+        "q": "What are two ways that Americans can participate in their democracy?",
+        "a": "Vote / Join a political party / Help with a campaign / Call Senators and Representatives",
+        "k": [
+            "vote",
+            "join",
+            "help",
+            "call",
+            "write"
+        ]
+    },
+    {
+        "q": "When is the last day you can send in federal income tax forms?",
+        "a": "April 15",
+        "k": [
+            "april 15"
+        ]
+    },
+    {
+        "q": "When must all men register for the Selective Service?",
+        "a": "At age 18 / Between 18 and 26",
+        "k": [
+            "18",
+            "26"
+        ]
+    },
+    {
+        "q": "What is one reason colonists came to America?",
+        "a": "Freedom / Political liberty / Religious freedom / Economic opportunity",
+        "k": [
+            "freedom",
+            "liberty",
+            "opportunity"
+        ]
+    },
+    {
+        "q": "Who lived in America before the Europeans arrived?",
+        "a": "American Indians / Native Americans",
+        "k": [
+            "indians",
+            "native americans"
+        ]
+    },
+    {
+        "q": "What group of people was taken to America and sold as slaves?",
+        "a": "Africans / People from Africa",
+        "k": [
+            "africans",
+            "africa"
+        ]
+    },
+    {
+        "q": "Why did the colonists fight the British?",
+        "a": "High taxes (taxation without representation) / Quarters soldiers / No self-government",
+        "k": [
+            "taxes",
+            "soldiers",
+            "self-government"
+        ]
+    },
+    {
+        "q": "Who wrote the Declaration of Independence?",
+        "a": "Thomas Jefferson",
+        "k": [
+            "jefferson"
+        ]
+    },
+    {
+        "q": "When was the Declaration of Independence adopted?",
+        "a": "July 4, 1776",
+        "k": [
+            "july 4",
+            "1776"
+        ]
+    },
+    {
+        "q": "There were 13 original states. Name three.",
+        "a": "New Hampshire, Massachusetts, Rhode Island, Connecticut, New York, New Jersey, Pennsylvania, Delaware, Maryland, Virginia, North Carolina, South Carolina, Georgia",
+        "k": [
+            "new york",
+            "new jersey",
+            "virginia",
+            "georgia",
+            "carolina",
+            "hampshire",
+            "maryland"
+        ]
+    },
+    {
+        "q": "What happened at the Constitutional Convention?",
+        "a": "The Constitution was written.",
+        "k": [
+            "written",
+            "wrote"
+        ]
+    },
+    {
+        "q": "When was the Constitution written?",
+        "a": "1787",
+        "k": [
+            "1787"
+        ]
+    },
+    {
+        "q": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+        "a": "James Madison / Alexander Hamilton / John Jay / Publius",
+        "k": [
+            "madison",
+            "hamilton",
+            "jay",
+            "publius"
+        ]
+    },
+    {
+        "q": "What is one thing Benjamin Franklin is famous for?",
+        "a": "U.S. Diplomat / Oldest member of Constitutional Convention / First Postmaster General",
+        "k": [
+            "diplomat",
+            "oldest",
+            "postmaster"
+        ]
+    },
+    {
+        "q": "Who is the 'Father of Our Country'?",
+        "a": "George Washington",
+        "k": [
+            "washington"
+        ]
+    },
+    {
+        "q": "Who was the first President?",
+        "a": "George Washington",
+        "k": [
+            "washington"
+        ]
+    },
+    {
+        "q": "What territory did the United States buy from France in 1803?",
+        "a": "The Louisiana Territory / Louisiana",
+        "k": [
+            "louisiana"
+        ]
+    },
+    {
+        "q": "Name one war fought by the United States in the 1800s.",
+        "a": "War of 1812 / Mexican-American War / Civil War / Spanish-American War",
+        "k": [
+            "1812",
+            "mexican",
+            "civil",
+            "spanish"
+        ]
+    },
+    {
+        "q": "Name the U.S. war between the North and the South.",
+        "a": "The Civil War",
+        "k": [
+            "civil war"
+        ]
+    },
+    {
+        "q": "Name one problem that led to the Civil War.",
+        "a": "Slavery / Economic reasons / States' rights",
+        "k": [
+            "slavery",
+            "economic",
+            "states' rights"
+        ]
+    },
+    {
+        "q": "What was one important thing that Abraham Lincoln did?",
+        "a": "Freed the slaves (Emancipation Proclamation) / Saved the Union",
+        "k": [
+            "freed",
+            "slaves",
+            "saved the union"
+        ]
+    },
+    {
+        "q": "What did the Emancipation Proclamation do?",
+        "a": "Freed the slaves",
+        "k": [
+            "freed",
+            "slaves"
+        ]
+    },
+    {
+        "q": "What did Susan B. Anthony do?",
+        "a": "Fought for women's rights / Fought for civil rights",
+        "k": [
+            "women",
+            "civil rights"
+        ]
+    },
+    {
+        "q": "Name one war fought by the United States in the 1900s.",
+        "a": "World War I / World War II / Korean War / Vietnam War / Gulf War",
+        "k": [
+            "world war",
+            "korea",
+            "vietnam",
+            "gulf"
+        ]
+    },
+    {
+        "q": "Who was President during World War I?",
+        "a": "Woodrow Wilson",
+        "k": [
+            "wilson"
+        ]
+    },
+    {
+        "q": "Who was President during the Great Depression and World War II?",
+        "a": "Franklin Roosevelt",
+        "k": [
+            "roosevelt"
+        ]
+    },
+    {
+        "q": "Who did the United States fight in World War II?",
+        "a": "Japan, Germany, and Italy",
+        "k": [
+            "japan",
+            "germany",
+            "italy"
+        ]
+    },
+    {
+        "q": "Before he was President, Eisenhower was a general. What war was he in?",
+        "a": "World War II",
+        "k": [
+            "world war ii",
+            "world war 2"
+        ]
+    },
+    {
+        "q": "During the Cold War, what was the main concern of the United States?",
+        "a": "Communism",
+        "k": [
+            "communism"
+        ]
+    },
+    {
+        "q": "What movement tried to end racial discrimination?",
+        "a": "Civil rights movement",
+        "k": [
+            "civil rights"
+        ]
+    },
+    {
+        "q": "What did Martin Luther King, Jr. do?",
+        "a": "Fought for civil rights / Worked for equality for all Americans",
+        "k": [
+            "civil rights",
+            "equality"
+        ]
+    },
+    {
+        "q": "What major event happened on September 11, 2001, in the United States?",
+        "a": "Terrorists attacked the United States.",
+        "k": [
+            "terrorists",
+            "attacked"
+        ]
+    },
+    {
+        "q": "Name one American Indian tribe in the United States.",
+        "a": "Cherokee / Navajo / Sioux / Chippewa / Choctaw / Pueblo / Apache...",
+        "k": [
+            "cherokee",
+            "navajo",
+            "sioux",
+            "apache"
+        ]
+    },
+    {
+        "q": "Name one of the two longest rivers in the United States.",
+        "a": "Missouri River / Mississippi River",
+        "k": [
+            "missouri",
+            "mississippi"
+        ]
+    },
+    {
+        "q": "What ocean is on the West Coast of the United States?",
+        "a": "Pacific Ocean",
+        "k": [
+            "pacific"
+        ]
+    },
+    {
+        "q": "What ocean is on the East Coast of the United States?",
+        "a": "Atlantic Ocean",
+        "k": [
+            "atlantic"
+        ]
+    },
+    {
+        "q": "Name one U.S. territory.",
+        "a": "Puerto Rico / U.S. Virgin Islands / American Samoa / Northern Mariana Islands / Guam",
+        "k": [
+            "puerto rico",
+            "virgin islands",
+            "samoa",
+            "guam"
+        ]
+    },
+    {
+        "q": "Name one state that borders Canada.",
+        "a": "Maine / New Hampshire / Vermont / New York / Pennsylvania / Ohio / Michigan / Minnesota / North Dakota / Montana / Idaho / Washington / Alaska",
+        "k": [
+            "maine",
+            "york",
+            "ohio",
+            "michigan",
+            "minnesota",
+            "dakota",
+            "montana",
+            "washington",
+            "alaska"
+        ]
+    },
+    {
+        "q": "Name one state that borders Mexico.",
+        "a": "California / Arizona / New Mexico / Texas",
+        "k": [
+            "california",
+            "arizona",
+            "texas",
+            "new mexico"
+        ]
+    },
+    {
+        "q": "What is the capital of the United States?",
+        "a": "Washington, D.C.",
+        "k": [
+            "washington"
+        ]
+    },
+    {
+        "q": "Where is the Statue of Liberty?",
+        "a": "New York (Harbor) / Liberty Island",
+        "k": [
+            "new york",
+            "liberty"
+        ]
+    },
+    {
+        "q": "Why does the flag have 13 stripes?",
+        "a": "Because there were 13 original colonies",
+        "k": [
+            "13",
+            "colonies"
+        ]
+    },
+    {
+        "q": "Why does the flag have 50 stars?",
+        "a": "Because there is one star for each state / Because there are 50 states",
+        "k": [
+            "50",
+            "states"
+        ]
+    },
+    {
+        "q": "What is the name of the national anthem?",
+        "a": "The Star-Spangled Banner",
+        "k": [
+            "star-spangled",
+            "banner"
+        ]
+    },
+    {
+        "q": "When do we celebrate Independence Day?",
+        "a": "July 4",
+        "k": [
+            "july 4"
+        ]
+    },
+    {
+        "q": "Name two national U.S. holidays.",
+        "a": "New Year's Day / Martin Luther King, Jr. Day / Presidents' Day / Memorial Day / Independence Day / Labor Day / Columbus Day / Veterans Day / Thanksgiving / Christmas",
+        "k": [
+            "christmas",
+            "thanksgiving",
+            "labor",
+            "memorial",
+            "independence"
+        ]
+    }
+]

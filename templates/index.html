@@ -265,6 +265,66 @@
                 transform: translateY(0);
             }
         }
+
+        /* Challenge Mode Styles */
+        .challenge-header {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .streak-badge {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            background: #e6f0ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .game-over-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+        }
+
+        .game-over-content {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-over-title {
+            color: var(--danger);
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .game-over-score {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -273,10 +333,29 @@
     <nav>
         <button id="mode-study" class="active" onclick="setMode('study')">📖 Study</button>
         <button id="mode-interview" onclick="setMode('interview')">🎤 Interview</button>
+        <button id="mode-challenge" onclick="setMode('challenge')">🏆 Challenge</button>
         <button id="mode-stats" onclick="setMode('stats')">📊 Stats</button>
     </nav>
 
     <main>
+        <!-- Challenge Header -->
+        <div class="challenge-header" id="challenge-info">
+            <span style="font-weight: bold;">CHALLENGE MODE</span>
+            <span class="streak-badge">🔥 Streak: <span id="streak-val">0</span></span>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div class="game-over-modal" id="game-over-modal">
+            <div class="game-over-content">
+                <h1 class="game-over-title">Game Over!</h1>
+                <p class="game-over-score">You requested a lifeline or missed.</p>
+                <div style="font-size: 4rem; margin: 20px 0;">🥀</div>
+                <p>Final Streak: <strong id="final-streak" style="font-size: 1.4em;">0</strong></p>
+                <button class="action-btn" onclick="startChallenge()">Try Again 🔄</button>
+                <button class="action-btn secondary" onclick="setMode('stats')">View Stats</button>
+            </div>
+        </div>
+
         <div class="card">
             <div style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Question <span id="q-num">1</span> of 100
             </div>
@@ -458,13 +537,20 @@
             navStudy: document.getElementById('mode-study'),
             navInt: document.getElementById('mode-interview'),
             navStats: document.getElementById('mode-stats'),
+            navChallenge: document.getElementById('mode-challenge'),
             card: document.querySelector('.card'),
             controls: document.getElementById('controls-area'),
             stats: document.getElementById('stats-container'),
             statsBody: document.getElementById('stats-table-body'),
             statMastered: document.getElementById('total-mastered'),
             statAttempted: document.getElementById('total-attempted'),
-            statRate: document.getElementById('completion-rate')
+            statRate: document.getElementById('completion-rate'),
+            challengeApps: {
+                header: document.getElementById('challenge-info'),
+                streak: document.getElementById('streak-val'),
+                modal: document.getElementById('game-over-modal'),
+                finalStreak: document.getElementById('final-streak')
+            }
         };
 
         function setMode(newMode) {
@@ -474,6 +560,11 @@
             els.navStudy.classList.toggle('active', mode === 'study');
             els.navInt.classList.toggle('active', mode === 'interview');
             els.navStats.classList.toggle('active', mode === 'stats');
+            els.navChallenge.classList.toggle('active', mode === 'challenge');
+
+            // Reset UI bits
+            els.challengeApps.header.style.display = 'none';
+            els.challengeApps.modal.style.display = 'none';
 
             // View Logic
             if (mode === 'stats') {
@@ -481,6 +572,19 @@
                 els.controls.style.display = 'none';
                 els.stats.style.display = 'block';
                 renderStats();
+            } else if (mode === 'challenge') {
+                els.card.style.display = 'block';
+                els.controls.style.display = 'flex'; // Share controls? Or custom?
+                els.stats.style.display = 'none';
+                els.challengeApps.header.style.display = 'flex';
+
+                // Reuse Interview style input
+                els.inputArea.style.display = 'block';
+                els.btnReveal.style.display = 'block';
+                els.btnReveal.innerText = "Submit Answer";
+                els.aText.style.display = 'none';
+
+                startChallenge();
             } else {
                 els.card.style.display = 'block';
                 els.controls.style.display = 'flex';
@@ -492,16 +596,14 @@
                     els.btnReveal.style.display = 'block';
                     els.aText.style.display = 'none';
                     els.btnReveal.innerText = "Show Answer";
-                } else {
+                    loadQuestion(currentIdx);
+                } else if (mode === 'interview') {
                     els.inputArea.style.display = 'block';
                     els.btnReveal.style.display = 'block';
-                    els.btnReveal.innerText = "Check Answer"; // Ensure Check Answer is shown or hidden logic
-                    // Re-run loadQuestion logic for buttons? 
-                    // loadQuestion handles button text, but we should ensure visibility
+                    els.btnReveal.innerText = "Check Answer";
                     els.btnReveal.style.display = 'none'; // Initially hidden in interview until check? 
-                    // No, original logic was: hidden initially.
+                    loadQuestion(currentIdx);
                 }
-                loadQuestion(currentIdx);
             }
         }
 
@@ -573,34 +675,145 @@
                 els.aText.style.display = 'block';
                 setTimeout(() => els.aText.classList.add('visible'), 10);
                 els.btnReveal.style.display = 'none';
+            } else if (mode === 'challenge') {
+                // In challenge mode, revealing answer = giving up
+                endChallenge();
             } else {
                 checkAnswer();
             }
         }
 
-        function checkAnswer() {
-            const userVal = els.userInput.value.toLowerCase().trim();
-            const correctKeywords = questions[currentIdx].k;
-            let isCorrect = false;
+        let challengeState = {
+            streak: 0,
+            active: false
+        };
 
-            // Basic Keyword Check: If user input contains any key phrase
-            correctKeywords.forEach(key => {
-                if (userVal.includes(key)) isCorrect = true;
+        function startChallenge() {
+            challengeState.streak = 0;
+            challengeState.active = true;
+            els.challengeApps.streak.innerText = "0";
+            els.challengeApps.modal.style.display = 'none';
+            els.userInput.value = '';
+            els.feedback.innerText = '';
+            els.aText.style.display = 'none';
+
+            loadChallengeQuestion();
+        }
+
+        function loadChallengeQuestion() {
+            // Weighted Random Selection
+            // Weight = 1 + (IncorrectStats * 5)
+            // If never attempted, weight 1.
+            let weightedList = [];
+            questions.forEach((q, i) => {
+                const s = progress.stats[i];
+                let w = 1;
+                if (s && s.incorrect > 0) {
+                    w += (s.incorrect * 5);
+                }
+                // Push index 'w' times
+                // Optimize: Prefix sum array would be better O(N) vs O(N*W), but N=100 so it's fine.
+                // Actually, let's just pick based on ranges to save memory if weights get huge.
+                // But max incorrect is probably small enough.
+                for (let k = 0; k < w; k++) weightedList.push(i);
             });
 
-            // Show Feedback
-            if (isCorrect) {
-                els.feedback.innerHTML = "<span class='correct'>✔ Correct!</span>";
-            } else {
-                els.feedback.innerHTML = "<span class='incorrect'>✘ Not quite.</span>";
-            }
+            const r = weightedList[Math.floor(Math.random() * weightedList.length)];
+            currentIdx = r;
 
-            // Always show the real answer after checking
+            // UI Update
+            els.qNum.innerText = "Unknown"; // Or show streak?
+            els.qText.innerText = questions[currentIdx].q;
+            els.aText.innerText = questions[currentIdx].a;
+
+            // Reset fields
+            els.aText.classList.remove('visible');
+            els.aText.style.display = 'none';
+            els.feedback.innerText = '';
+            els.userInput.value = '';
+            els.userInput.classList.remove('correct', 'incorrect');
+            els.userInput.disabled = false;
+            els.userInput.focus();
+
+            // Render basic UI
+            els.btnReveal.style.display = 'block';
+            els.btnReveal.innerText = "Submit Answer";
+        }
+
+        function endChallenge() {
+            challengeState.active = false;
+            els.challengeApps.finalStreak.innerText = challengeState.streak;
+            els.challengeApps.modal.style.display = 'flex';
+
+            // Show the answer behind
             els.aText.style.display = 'block';
             setTimeout(() => els.aText.classList.add('visible'), 10);
         }
 
+        async function checkAnswer() {
+            const userVal = els.userInput.value.trim();
+            if (!userVal) return;
+
+            // Call Backend API for robust fuzzy matching
+            try {
+                const res = await fetch('/api/check_answer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ index: currentIdx, answer: userVal })
+                });
+                const data = await res.json();
+                const isCorrect = data.correct;
+
+                // Show Feedback
+                if (isCorrect) {
+                    els.feedback.innerHTML = "<span class='correct'>✔ Correct!</span>";
+                    recordResult(currentIdx, true);
+
+                    if (mode === 'challenge') {
+                        challengeState.streak++;
+                        els.challengeApps.streak.innerText = challengeState.streak;
+                        els.userInput.classList.add('correct');
+                        setTimeout(() => {
+                            loadChallengeQuestion();
+                        }, 1000); // 1s delay
+                        return; // return early, don't show answer yet
+                    }
+
+                } else {
+                    els.feedback.innerHTML = "<span class='incorrect'>✘ Not quite.</span>";
+                    recordResult(currentIdx, false);
+
+                    if (mode === 'challenge') {
+                        endChallenge();
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.error("Error checking answer:", e);
+                els.feedback.innerHTML = "<span class='incorrect'>Error checking answer.</span>";
+            }
+
+            // Always show the real answer after checking (unless challenge mode caught above)
+            els.aText.style.display = 'block';
+            setTimeout(() => els.aText.classList.add('visible'), 10);
+
+            // Hide Input area in interview mode after check? 
+            // Or keep it open for retry? The original logic didn't hide it but revealed answer.
+            // Let's keep it consistent.
+        }
+
+
         function nextQuestion() {
+            if (mode === 'challenge') {
+                // Skip? Maybe penalize? Let's say skip resets or counts as wrong.
+                // Or just pick another random one? 
+                // Let's assume Next in Challenge = Skip (Give up on this one, keeps streak? No, that's cheating)
+                // Let's say Next = Give Up.
+                if (confirm("Skip this question? This will end your streak.")) {
+                    endChallenge();
+                }
+                return;
+            }
             let next = currentIdx + 1;
             if (next >= questions.length) next = 0;
             loadQuestion(next);
