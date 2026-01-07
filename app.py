@@ -1,6 +1,7 @@
 import os
 import json
 import difflib
+import variable_answers
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -56,6 +57,13 @@ def check_answer():
         return jsonify({"correct": False, "error": "Invalid question index"})
 
     q_data = questions[idx]
+    
+    # Check for variable answer type first
+    variable_type = q_data.get('variable_type')
+    if variable_type:
+        is_correct = variable_answers.check_answer(variable_type, user_val)
+        return jsonify({"correct": is_correct})
+        
     keywords = q_data.get('k', [])
     
     is_correct = False

@@ -170,6 +170,7 @@
     {
         "q": "Who is one of your state's U.S. Senators now?",
         "a": "*Answers will vary* (Check your state)",
+        "variable_type": "senator",
         "k": [
             "vary",
             "check"
@@ -232,6 +233,7 @@
     {
         "q": "What is the name of the President of the United States now?",
         "a": "Joe Biden / Biden (Check current)",
+        "variable_type": "president",
         "k": [
             "biden",
             "trump",
@@ -241,6 +243,7 @@
     {
         "q": "What is the name of the Vice President of the United States now?",
         "a": "Kamala Harris / Harris (Check current)",
+        "variable_type": "vice_president",
         "k": [
             "harris",
             "vance"
@@ -319,6 +322,7 @@
     {
         "q": "How many justices are on the Supreme Court?",
         "a": "9 (Nine)",
+        "variable_type": "sc_justices_count",
         "k": [
             "9",
             "nine"
@@ -327,6 +331,7 @@
     {
         "q": "Who is the Chief Justice of the United States now?",
         "a": "John Roberts",
+        "variable_type": "chief_justice",
         "k": [
             "roberts"
         ]
@@ -355,6 +360,7 @@
     {
         "q": "Who is the Governor of your state now?",
         "a": "*Answers will vary*",
+        "variable_type": "governor",
         "k": [
             "vary"
         ]
@@ -362,6 +368,7 @@
     {
         "q": "What is the capital of your state?",
         "a": "*Answers will vary*",
+        "variable_type": "capital",
         "k": [
             "vary"
         ]
@@ -377,6 +384,7 @@
     {
         "q": "What is the political party of the President now?",
         "a": "Democratic (Check current)",
+        "variable_type": "party_president",
         "k": [
             "democratic",
             "republican"
@@ -385,6 +393,7 @@
     {
         "q": "What is the name of the Speaker of the House of Representatives now?",
         "a": "Mike Johnson (Check current)",
+        "variable_type": "speaker_house",
         "k": [
             "johnson",
             "mccarthy"

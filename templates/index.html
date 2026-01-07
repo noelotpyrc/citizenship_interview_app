@@ -629,10 +629,21 @@
                 }
 
                 html += `
-                    <tr onclick="goToQuestion(${idx})" style="cursor:pointer">
+                    <tr onclick="toggleStatAnswer(${idx})" style="cursor:pointer">
                         <td>${idx + 1}</td>
-                        <td>${status} ${q.q.substring(0, 60)}${q.q.length > 60 ? '...' : ''}</td>
+                        <td>${status} ${q.q}</td>
                         <td>${history}</td>
+                    </tr>
+                    <tr id="stat-ans-${idx}" style="display:none; background-color: #f8f9fa;">
+                        <td colspan="3" style="padding: 15px; border-top: none;">
+                            <div style="font-weight:bold; color:var(--primary); margin-bottom:5px;">Answer:</div>
+                            <div style="font-size: 1.1rem; color: #333;">${q.a}</div>
+                            <div style="margin-top:10px;">
+                                <button class="action-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="event.stopPropagation(); goToQuestion(${idx})">
+                                    Open Flashcard
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 `;
             });
@@ -641,6 +652,15 @@
             els.statMastered.innerText = mastered;
             els.statAttempted.innerText = attempted;
             els.statRate.innerText = Math.round((mastered / 100) * 100) + '%';
+        }
+
+        function toggleStatAnswer(idx) {
+            const row = document.getElementById(`stat-ans-${idx}`);
+            if (row.style.display === 'none') {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
         }
 
         function goToQuestion(idx) {
