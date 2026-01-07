@@ -357,7 +357,8 @@
         </div>
 
         <div class="card">
-            <div style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Question <span id="q-num">1</span> of 100
+            <div id="q-progress-text" style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Question <span
+                    id="q-num">1</span> of 100
             </div>
 
             <div class="question-text" id="question">Loading...</div>
@@ -578,6 +579,9 @@
                 els.stats.style.display = 'none';
                 els.challengeApps.header.style.display = 'flex';
 
+                // Hide Question Counter in Challenge Mode
+                document.getElementById('q-progress-text').style.display = 'none';
+
                 // Reuse Interview style input
                 els.inputArea.style.display = 'block';
                 els.btnReveal.style.display = 'block';
@@ -589,6 +593,10 @@
                 els.card.style.display = 'block';
                 els.controls.style.display = 'flex';
                 els.stats.style.display = 'none';
+
+                // Show Question Counter in other modes
+                if (document.getElementById('q-progress-text'))
+                    document.getElementById('q-progress-text').style.display = 'block';
 
                 // Mode Specifics
                 if (mode === 'study') {
@@ -705,12 +713,14 @@
 
         let challengeState = {
             streak: 0,
-            active: false
+            active: false,
+            seenIndices: new Set()
         };
 
         function startChallenge() {
             challengeState.streak = 0;
             challengeState.active = true;
+            challengeState.seenIndices = new Set();
             els.challengeApps.streak.innerText = "0";
             els.challengeApps.modal.style.display = 'none';
             els.userInput.value = '';
@@ -726,6 +736,9 @@
             // If never attempted, weight 1.
             let weightedList = [];
             questions.forEach((q, i) => {
+                // Skip if already seen in this session
+                if (challengeState.seenIndices.has(i)) return;
+
                 const s = progress.stats[i];
                 let w = 1;
                 if (s && s.incorrect > 0) {
@@ -738,8 +751,17 @@
                 for (let k = 0; k < w; k++) weightedList.push(i);
             });
 
+            if (weightedList.length === 0) {
+                // All questions answered! Victory?
+                // For now, just end challenge.
+                endChallenge();
+                alert("Incredible! You have gone through all 100 questions!");
+                return;
+            }
+
             const r = weightedList[Math.floor(Math.random() * weightedList.length)];
             currentIdx = r;
+            challengeState.seenIndices.add(currentIdx);
 
             // UI Update
             els.qNum.innerText = "Unknown"; // Or show streak?
@@ -758,6 +780,10 @@
             // Render basic UI
             els.btnReveal.style.display = 'block';
             els.btnReveal.innerText = "Submit Answer";
+
+            // Hide Stats in Challenge Mode
+            let statsEl = document.getElementById('q-stats');
+            if (statsEl) statsEl.style.display = 'none';
         }
 
         function endChallenge() {
@@ -906,6 +932,7 @@
                 statsEl.style.marginTop = '5px';
                 if (els.qNum && els.qNum.parentNode) els.qNum.parentNode.appendChild(statsEl);
             }
+            statsEl.style.display = 'block'; // Ensure visible in non-challenge modes
             statsEl.innerText = s.attempts > 0 ?
                 `History: ${s.correct} Correct, ${s.incorrect} Incorrect` : "History: Not answered yet";
         }
@@ -933,17 +960,7 @@
             updateStatsUI(idx);
         };
 
-        // Override checkAnswer to record stats
-        const _superCheck = checkAnswer;
-        checkAnswer = function () {
-            const userVal = els.userInput.value.toLowerCase().trim();
-            const correctKeywords = questions[currentIdx].k;
-            let isCorrect = false;
-            correctKeywords.forEach(key => { if (userVal.includes(key)) isCorrect = true; });
 
-            recordResult(currentIdx, isCorrect);
-            _superCheck();
-        };
 
         // Initialize
         (async function init() {
