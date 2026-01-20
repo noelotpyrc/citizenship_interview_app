@@ -254,6 +254,10 @@
             background: #ddd;
         }
 
+        .dot-yellow {
+            background: #ffc107;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -265,6 +269,7 @@
                 transform: translateY(0);
             }
         }
+
 
         /* Challenge Mode Styles */
         .challenge-header {
@@ -357,8 +362,14 @@
         </div>
 
         <div class="card">
-            <div id="q-progress-text" style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Question <span
-                    id="q-num">1</span> of 100
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div id="q-progress-text" style="font-size: 0.9rem; color: #888; margin: 0;">Question <span
+                        id="q-num">1</span> of 100
+                </div>
+                <!-- Toggle Text Visibility -->
+                <label style="font-size: 0.9rem; color: #555; cursor: pointer; user-select: none;">
+                    <input type="checkbox" id="hide-q-text" onchange="toggleQuestionText()"> Hide Text
+                </label>
             </div>
 
             <div class="question-text" id="question">Loading...</div>
@@ -554,6 +565,16 @@
             }
         };
 
+        function toggleQuestionText() {
+            const qText = document.getElementById('question');
+            const cb = document.getElementById('hide-q-text');
+            if (cb.checked) {
+                qText.style.visibility = 'hidden';
+            } else {
+                qText.style.visibility = 'visible';
+            }
+        }
+
         function setMode(newMode) {
             mode = newMode;
 
@@ -627,12 +648,21 @@
 
                 if (s && s.attempts > 0) {
                     attempted++;
+
+                    // Mastered Count Logic: Majority correct
                     if (s.correct > s.incorrect) {
                         mastered++;
+                    }
+
+                    // Visual Status Logic
+                    if (s.correct > 0 && s.incorrect > 0) {
+                        status = '<span class="status-dot dot-yellow"></span>';
+                    } else if (s.correct > s.incorrect) {
                         status = '<span class="status-dot dot-green"></span>';
                     } else {
                         status = '<span class="status-dot dot-red"></span>';
                     }
+
                     history = `<span style="color:var(--success)">${s.correct}</span> / <span style="color:var(--danger)">${s.incorrect}</span>`;
                 }
 
